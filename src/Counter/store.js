@@ -2,11 +2,15 @@
 const ADD = 'ADD'
 const SUB = 'SUB'
 
-export const add = () => ({
-    type: 'ADD'
+
+//creator
+export const add = (number = 1) => ({
+    type: 'ADD',
+    number
 })
-export const sub = () => ({
-    type: 'SUB'
+export const sub = (number = 1) => ({
+    type: 'SUB',
+    number
 })
 
 //tworzymy switch ktory jest w reducer
@@ -24,12 +28,12 @@ const reducer = (state = INITIAL_STATE, action) => {
             //return Object.assign({}, state,{counterValue:state.counterValue+1})
             return {
                 ...state,
-                counterValue: state.counterValue + 1
+                counterValue: state.counterValue + action.number
             }
         case 'SUB':
             return {
                 ...state,
-                counterValue: state.counterValue - 1
+                counterValue: state.counterValue - action.number
             }
         default:
             return state;
